@@ -1,0 +1,24 @@
+ class ErrorHandler extends Error{
+    constructor(message,statusCode){
+        super(message);
+        this.statusCode = statusCode
+
+        Error.captureStackTrace(this,this.constructor);
+    }
+ }
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+mongodb
+////////////////////////////////////////////////////////////////////////////////////////
+search() {
+  const keyword = this.queryStr.keyword
+     ? {
+         name: {
+           $regex: this.querystr.keyword,
+           $options: "i",
+         1,
+       }
+       0:
+                                  ...keyword ));
+   return this;

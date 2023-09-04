@@ -1,0 +1,2 @@
+1.TypeError: Assignment to constant variable: when you try to change value of varible which has initiated by const;
+2.arrow function ke under this us nahi kar sakte ha
