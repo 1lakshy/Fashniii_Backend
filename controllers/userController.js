@@ -3,19 +3,27 @@ const asyncErrorFunction = require('../middleware/asyncErrorFunction');
 const User = require('../models/userModel');
 const { sendJWTToken } = require('../utils/jwtService');
 // const userModel = require('../models/userModel');
-const sendEmail = require("../utils/sendEmail")
+const sendEmail = require("../utils/sendEmail");
+const cloudinary = require("cloudinary");
 
 
 // registration of user
 exports.registerUser = asyncErrorFunction(async (req, res, err) => {
+
+  const cloud = await cloudinary.v2.uploader.upload(req.body.avatar,{
+    folder:"avatars",
+    width:150,
+    crop:"scale",
+  })
   const { name, email, password } = req.body;
+  console.log("Hello",name,email,password);
   const user = await User.create({
     name,
     email,
     password,
     avatar: {
-      public_id: 'this is demo id',
-      url: 'publicurl',
+      public_id: cloud.public_id,
+      url: cloud.secure_url,
     },
   });
   sendJWTToken(user, 201, res);

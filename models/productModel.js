@@ -6,6 +6,9 @@ const ProductSchema = mongoose.Schema({
     required: [true, 'Name NonDefined'],
     type: String,
   },
+  brandName:{
+type: String
+  },
   description: {
     required: [true, 'description NonDefined'],
     type: String,
@@ -31,10 +34,10 @@ const ProductSchema = mongoose.Schema({
       },
     },
   ],
-  category: {
+  category: [{
     type: String,
     required: [true, 'Product category not defined'],
-  },
+  }],
   reviews: [
     {
       user: {
