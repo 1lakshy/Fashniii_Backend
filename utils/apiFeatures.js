@@ -1,3 +1,5 @@
+// const { category } = require("../../frontend/src/assets/category");
+
 class ApiFeatures {
   constructor(query, queryStr) {
     this.query = query;
@@ -8,6 +10,19 @@ class ApiFeatures {
     const keyword = this.queryStr.keyword
       ? {
           name: {
+            $regex: this.queryStr.keyword,
+            $options: 'i',
+          },
+        }
+      : {};
+
+    this.query = this.query.find({ ...keyword });
+    return this;
+  }
+  searchCategory() {
+    const keyword = this.queryStr.keyword
+      ? {
+          category: {
             $regex: this.queryStr.keyword,
             $options: 'i',
           },

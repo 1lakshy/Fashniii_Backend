@@ -4,16 +4,16 @@ const asyncErrorFunction = require("./asyncErrorFunction");
 const userModel = require("../models/userModel");
 
 exports.isAuthenticatedUser = asyncErrorFunction(async(req,res,next)=>{
-    const {token} = req.cookies;
+    // const {token} = req.cookies;
 
-    if(!token){
-        return next(new ErrorHandler("Please Login",400))
-    }
+    // if(!token){
+    //     return next(new ErrorHandler("Please Login",400))
+    // }
 
-    const cookieData = jwt.verify(token,process.env.JWT_SECRET);
-    // console.log(cookieData)
+    // const cookieData = jwt.verify(token,process.env.JWT_SECRET);
+    // // console.log(cookieData)
     
-    req.user = await userModel.findOne({id:cookieData.id});
+    // req.user = await userModel.findOne({id:cookieData.id});
     // console.log("auth"+req.user.id)
     next()
 

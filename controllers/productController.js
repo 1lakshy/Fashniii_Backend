@@ -10,7 +10,7 @@ const ApiFeatures = require("../utils/apiFeatures")
 exports.getAllProducts = asyncErrorFunction(async (req, res,next) => {
 
   const resultPerPage= 10;
- const apiFeatures= new ApiFeatures(productModel.find(),req.query).search().filter().pagination(resultPerPage);
+ const apiFeatures= new ApiFeatures(productModel.find(),req.query).search().filter();
   const products = await apiFeatures.query;
   const productCount = await productModel.countDocuments()
 
@@ -82,7 +82,7 @@ exports.deleteProduct = asyncErrorFunction(async (req, res, next) => {
 // create Product
 exports.createProduct = asyncErrorFunction(async (req, res, next) => {
 
-  req.body.user = req.user.id;
+  req.body.user = "6593b5e0035d1c1d14b8fe92";
   // console.log("abcd"+req.user)
   const product = await productModel.create(req.body);
   res.status(200).json({

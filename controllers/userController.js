@@ -32,6 +32,7 @@ exports.registerUser = asyncErrorFunction(async (req, res, err) => {
 // Login User
 exports.loginUser = asyncErrorFunction(async (req, res, next) => {
   const { email, password } = req.body;
+  console.log(email,password)
 
   if (!email || !password) {
     return next(
